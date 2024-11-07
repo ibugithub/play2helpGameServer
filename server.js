@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Use Render's provided PORT or default to 3000
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'game', 'index.html'));
 });
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
